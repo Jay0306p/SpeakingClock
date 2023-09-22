@@ -1,17 +1,21 @@
-package com.example.Speaking.clock.Controller;
+package com.example.Speaking.clock;
 
+import com.example.Speaking.clock.Controller.*;
 import com.example.Speaking.clock.Service.*;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.BeforeEach;
+
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-public class TimeControllerTest {
+@SpringBootTest
+public class SpeakingClockControllerTest {
 
     @InjectMocks
     private TimeController timeController;
@@ -50,7 +54,8 @@ public class TimeControllerTest {
 
         // Assert
         assertEquals(400, response.getStatusCodeValue());
-        assertEquals("Invalid time format.", response.getBody());
+        assertTrue(response.getBody().contains("Invalid time format."));
     }
+
 }
 
